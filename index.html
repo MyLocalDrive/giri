@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Dhiren</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+        }
+        .clock-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 15px 30px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #00ff00;
+            font-size: 24px;
+            font-family: "Courier New", Courier, monospace;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .clock span {
+            display: block;
+        }
+        .search-container {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            font-size: 20px;
+            border-radius: 5px;
+            border: 2px solid #00ff00;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            font-family: "Courier New", Courier, monospace;
+            box-sizing: border-box;
+        }
+        .icon-container {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 20px;
+        }
+        .icon-container a {
+            color: #00ffbf;
+            font-size: 40px;
+            text-decoration: none;
+        }
+        .icon-container a:hover {
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+
+    <video autoplay loop muted>
+        <source src="./mylivewallpapers-com-Tunnel-Drift-FHD.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="clock-container">
+        <div class="clock">
+            <span id="clock-india"></span>
+            <span>India</span>
+        </div>
+    </div>
+
+    <div class="search-container">
+        <form action="https://www.google.com/search" method="GET">
+            <input type="text" name="q" class="search-bar" id="search-bar" placeholder="">
+        </form>
+    </div>
+
+    <div class="icon-container">
+        
+        <a href="https://mail.google.com/mail/u/0/#inbox" target="_self">
+            <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://chatgpt.com/" target="_self">
+            <i class="fas fa-robot"></i>
+        </a>
+        <a href="https://youtube.com/" target="_self">
+            <i class="fab fa-youtube"></i>
+        </a>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+
+            // India time
+            const indiaTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
+            const indiaHours = String(indiaTime.getHours()).padStart(2, '0');
+            const indiaMinutes = String(indiaTime.getMinutes()).padStart(2, '0');
+            const indiaSeconds = String(indiaTime.getSeconds()).padStart(2, '0');
+            document.getElementById('clock-india').textContent = `${indiaHours}:${indiaMinutes}:${indiaSeconds}`;
+        }
+
+        setInterval(updateClock, 1000); // Update the clock every second
+        updateClock(); // Initial call to display the time immediately
+
+        // Typewriter effect for the search bar's placeholder
+        var i = 0;
+        var txt = 'Hy Dhiren Type Something to Search....;)';
+        var speed = 100;
+
+        function typeWriter() {
+            if (i < txt.length) {
+                document.getElementById("search-bar").placeholder += txt.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                // Reset after typing is done and wait for 2 seconds
+                setTimeout(() => {
+                    i = 0;
+                    document.getElementById("search-bar").placeholder = '';
+                    typeWriter(); // Restart the typing effect
+                }, 2000); // 2-second delay
+            }
+        }
+
+        window.onload = function() {
+            typeWriter(); // Start the typing effect on page load
+        }
+    </script>
+
+</body>
+</html>
